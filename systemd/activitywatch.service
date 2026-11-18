@@ -1,0 +1,18 @@
+[Unit]
+Description=ActivityWatch Server (aw-server-rust) – lokale Zeit-Tracking-Web-App
+Documentation=https://github.com/ActivityWatch/activitywatch
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=activitywatch
+Group=activitywatch
+Environment=HOME=/var/lib/activitywatch
+ExecStart=/opt/activitywatch/aw-server-rust/aw-server-rust --host 0.0.0.0 --port @PORT@
+Restart=always
+RestartSec=5
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

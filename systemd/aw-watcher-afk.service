@@ -1,0 +1,17 @@
+[Unit]
+Description=ActivityWatch AFK-Watcher (headless unter Xvfb)
+Documentation=https://github.com/ActivityWatch/activitywatch
+Wants=activitywatch.service
+After=activitywatch.service
+
+[Service]
+Type=simple
+User=activitywatch
+Group=activitywatch
+Environment=HOME=/var/lib/activitywatch
+ExecStart=/usr/bin/xvfb-run -a /opt/activitywatch/aw-watcher-afk/aw-watcher-afk --host 127.0.0.1 --port @PORT@ --timeout 180
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
